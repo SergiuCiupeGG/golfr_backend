@@ -26,5 +26,17 @@ module Api
         }
       }.to_json
     end
+
+    def user_scores
+      id = params[:id]
+      user = User.find(id)
+      render json: {
+        user: {
+          id: id,
+          name: user.name,
+          scores: user.scores
+        }
+      }
+    end
   end
 end
