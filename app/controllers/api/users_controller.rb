@@ -26,5 +26,24 @@ module Api
         }
       }.to_json
     end
+
+    def show_scores
+      user = User.find_by(id: params[:id])
+
+      if user.nil?
+        render json: {
+          errors: [
+            'User not found'
+          ]
+        }
+        return
+      end
+      render json: {
+        user: {
+          name: user.name,
+          scores: user.scores
+        }
+      }.to_json
+    end
   end
 end
